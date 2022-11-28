@@ -1,42 +1,49 @@
 package com.naturalmente.Naturalmente.modelos;
 
-import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Data
-@Document()
 public class Producto {
 
     @Id
     String _id;
-    String fecha;
+    String nombre;
+    String tipo;
+    int existencia;
     int valor;
 
-    public Producto(String _id, String fecha, int valor) {
+    public Producto(String _id, String nombre, String tipo, int existencia, int valor) {
         this._id = _id;
-        this.fecha = fecha;
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.existencia = existencia;
         this.valor = valor;
     }
 
     public Producto() {
-
     }
 
-    public String get_id() {
-        return _id;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void set_id(String _id) {
-        this._id = _id;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getFecha() {
-        return fecha;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getExistencia() {
+        return existencia;
+    }
+
+    public void setExistencia(int existencia) {
+        this.existencia = existencia;
     }
 
     public int getValor() {
