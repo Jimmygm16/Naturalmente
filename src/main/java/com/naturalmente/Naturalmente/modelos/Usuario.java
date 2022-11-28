@@ -18,9 +18,8 @@ public abstract class Usuario {
     }
 
     public Usuario(String nombre) {
-        this.setNombre(nombre);
+        this.nombre = nombre;
     }
-    //Getters and setters
 
     public String getNombre() {
         return nombre;

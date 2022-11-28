@@ -16,8 +16,7 @@ public class Planta {
     public Planta() {
     }
 
-    public Planta(String id, String nombre, String funcionalidad) {
-        this._id = id;
+    public Planta(String nombre, String funcionalidad) {
         this.nombre = nombre;
         this.funcionalidad = funcionalidad;
     }

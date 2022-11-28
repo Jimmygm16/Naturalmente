@@ -14,14 +14,14 @@ public class ControladorPlantas {
     @Autowired
     private RepositorioPlantas miRepositorioPlantas;
 
-    @GetMapping("")
+    @GetMapping
     public List<Planta> index(){return this.miRepositorioPlantas.findAll();}
     @GetMapping("{id}")
     public Planta show(@PathVariable String id){
         Planta plantaActual = this.miRepositorioPlantas.findById(id).orElse(null);
         return plantaActual;
     }
-    @PostMapping("")
+    @PostMapping
     public Planta create(@RequestBody Planta infoPlanta){
         return this.miRepositorioPlantas.save(infoPlanta);
     }
