@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document()
 public class Planta {
     @Id
-    private String id;
+    private String _id;
     private String nombre;
     private String funcionalidad;
 
@@ -17,21 +17,13 @@ public class Planta {
     }
 
     public Planta(String id, String nombre, String funcionalidad) {
-        this.id = id;
+        this._id = id;
         this.nombre = nombre;
         this.funcionalidad = funcionalidad;
     }
 
     //Getters and setters
 
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getNombre() {
         return nombre;
