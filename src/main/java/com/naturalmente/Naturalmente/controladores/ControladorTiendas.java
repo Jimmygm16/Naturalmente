@@ -16,6 +16,7 @@ public class ControladorTiendas {
     @Autowired
     RepositorioTiendas miRepositorioTiendas;
 
+    // JEste es un comentario
     public ControladorTiendas(RepositorioTiendas miRepositorioTiendas) {
         this.miRepositorioTiendas = miRepositorioTiendas;
     }
