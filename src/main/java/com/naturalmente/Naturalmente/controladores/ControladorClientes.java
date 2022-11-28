@@ -1,8 +1,6 @@
 package com.naturalmente.Naturalmente.controladores;
 
-import ch.qos.logback.core.net.server.Client;
 import com.naturalmente.Naturalmente.modelos.Cliente;
-import com.naturalmente.Naturalmente.modelos.Compra;
 import com.naturalmente.Naturalmente.repositorios.RepositorioClientes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
