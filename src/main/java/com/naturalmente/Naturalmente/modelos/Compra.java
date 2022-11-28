@@ -10,18 +10,19 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Compra {
 
     @Id
+    private
     String _id;
-    String nombre;
-    String tipo;
-    int existencias;
-    int precio;
+    private String nombre;
+    private String tipo;
+    private int existencias;
+    private int precio;
 
     public Compra(String _id, String nombre, String tipo, int existencias, int precio) {
-        this._id = _id;
-        this.nombre = nombre;
-        this.tipo = tipo;
-        this.existencias = existencias;
-        this.precio = precio;
+        this.set_id(_id);
+        this.setNombre(nombre);
+        this.setTipo(tipo);
+        this.setExistencias(existencias);
+        this.setPrecio(precio);
     }
 
     public Compra() {
