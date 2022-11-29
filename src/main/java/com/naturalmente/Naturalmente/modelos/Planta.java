@@ -2,6 +2,7 @@ package com.naturalmente.Naturalmente.modelos;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
@@ -11,6 +12,8 @@ public class Planta {
     private String _id;
     private String nombre;
     private String funcionalidad;
+    @DBRef
+    private Producto miProducto;
 
     //constructores
     public Planta() {
@@ -38,5 +41,13 @@ public class Planta {
 
     public void setFuncionalidad(String funcionalidad) {
         this.funcionalidad = funcionalidad;
+    }
+
+    public Producto getMiProducto() {
+        return miProducto;
+    }
+
+    public void setMiProducto(Producto miProducto) {
+        this.miProducto = miProducto;
     }
 }
