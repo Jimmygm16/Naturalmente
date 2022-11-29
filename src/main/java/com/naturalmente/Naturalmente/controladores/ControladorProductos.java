@@ -1,6 +1,8 @@
 package com.naturalmente.Naturalmente.controladores;
 
+import com.naturalmente.Naturalmente.modelos.Compra;
 import com.naturalmente.Naturalmente.modelos.Producto;
+import com.naturalmente.Naturalmente.repositorios.RepositorioCompras;
 import com.naturalmente.Naturalmente.repositorios.RepositorioProductos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,9 @@ public class ControladorProductos {
 
     @Autowired
     RepositorioProductos miRepositorioProductos;
+
+    @Autowired
+    RepositorioCompras miRepositorioCompras;
 
     public ControladorProductos(RepositorioProductos miRepositorioProductos) {
         this.miRepositorioProductos = miRepositorioProductos;
@@ -52,6 +57,24 @@ public class ControladorProductos {
             return null;
         }
     }
+
+    @PutMapping("{id}/compras/{id_compra}")
+    public Producto asociarProductoACompra(@PathVariable String id,
+                                  @PathVariable String id_compra) {
+        Producto productoEncontrado = miRepositorioProductos
+                .findById(id)
+                .orElse(null);
+        Compra compraEncontrada = miRepositorioCompras
+                .findById(id_compra)
+                .orElse(null);
+        if(productoEncontrado != null && compraEncontrada != null) {
+            productoEncontrado.setCompra(compraEncontrada);
+            return this.miRepositorioProductos.save(productoEncontrado);
+        } else {
+            return null;
+        }
+    }
+
     @DeleteMapping("{id}")
     public void delete(@PathVariable String id){
         Producto encontrado=this.miRepositorioProductos

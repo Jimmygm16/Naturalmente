@@ -2,6 +2,7 @@ package com.naturalmente.Naturalmente.modelos;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
@@ -13,6 +14,8 @@ public class Producto {
     private String tipo;
     private int valor;
     private int existencia;
+    @DBRef
+    private Compra compra;
 
     //Constructores
 
@@ -65,5 +68,13 @@ public class Producto {
 
     public void setExistencia(int existencia) {
         this.existencia = existencia;
+    }
+
+    public Compra getCompra() {
+        return compra;
+    }
+
+    public void setCompra(Compra compra) {
+        this.compra = compra;
     }
 }
