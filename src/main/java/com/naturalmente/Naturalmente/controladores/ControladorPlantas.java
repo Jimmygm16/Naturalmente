@@ -1,7 +1,9 @@
 package com.naturalmente.Naturalmente.controladores;
 
 import com.naturalmente.Naturalmente.modelos.Planta;
+import com.naturalmente.Naturalmente.modelos.Producto;
 import com.naturalmente.Naturalmente.repositorios.RepositorioPlantas;
+import com.naturalmente.Naturalmente.repositorios.RepositorioProductos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +15,8 @@ import java.util.List;
 public class ControladorPlantas {
     @Autowired
     private RepositorioPlantas miRepositorioPlantas;
+    @Autowired
+    private RepositorioProductos miRepositorioProductos;
 
     @GetMapping
     public List<Planta> index(){return this.miRepositorioPlantas.findAll();}
@@ -44,6 +48,18 @@ public class ControladorPlantas {
         if (eliminado != null){
             this.miRepositorioPlantas.delete(eliminado);
         }
+    }
+
+    @PutMapping("{id}/productos/{id_producto}")
+    public Planta asociarPlantaAproducto(@PathVariable String id, @PathVariable String id_producto){
+        Planta plantaEncontrada = this.miRepositorioPlantas.findById(id).orElse(null);
+        Producto productoEncontrado = this.miRepositorioProductos.findById(id_producto).orElse(null);
+
+        if (plantaEncontrada != null && productoEncontrado != null){
+            plantaEncontrada.setMiProducto(productoEncontrado);
+            return this.miRepositorioPlantas.save(plantaEncontrada);
+        }
+        return null;
     }
 
 }

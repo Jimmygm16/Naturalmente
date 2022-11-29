@@ -1,6 +1,8 @@
 package com.naturalmente.Naturalmente.controladores;
 
+import com.naturalmente.Naturalmente.modelos.Cliente;
 import com.naturalmente.Naturalmente.modelos.Compra;
+import com.naturalmente.Naturalmente.repositorios.RepositorioClientes;
 import com.naturalmente.Naturalmente.repositorios.RepositorioCompras;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +16,8 @@ import java.util.List;
 public class ControladorCompras {
     @Autowired
     private RepositorioCompras miRepositorioCompras;
-
+    @Autowired
+    private RepositorioClientes miRepositorioClientes;
     @GetMapping("")
     public List<Compra> index(){return this.miRepositorioCompras.findAll();}
     @GetMapping("{id}")
@@ -45,5 +48,17 @@ public class ControladorCompras {
         if (eliminado != null){
             this.miRepositorioCompras.delete(eliminado);
         }
+    }
+
+    @PutMapping("{id}/clientes/{id_cliente}")
+    public Compra asociarMateriaAdepartamento(@PathVariable String id, @PathVariable String id_cliente){
+        Compra compraEncontrada = this.miRepositorioCompras.findById(id).orElse(null);
+        Cliente clienteEncontrado = this.miRepositorioClientes.findById(id_cliente).orElse(null);
+
+        if (compraEncontrada != null && clienteEncontrado != null){
+            compraEncontrada.setMiCliente(clienteEncontrado);
+            return this.miRepositorioCompras.save(compraEncontrada);
+        }
+        return null;
     }
 }
