@@ -15,7 +15,7 @@ public class Producto {
     private int valor;
     private int existencia;
     @DBRef
-    private Compra compra;
+    private Compra miCompra;
 
     //Constructores
 
@@ -70,11 +70,11 @@ public class Producto {
         this.existencia = existencia;
     }
 
-    public Compra getCompra() {
-        return compra;
+    public Compra getMiCompra() {
+        return miCompra;
     }
 
-    public void setCompra(Compra compra) {
-        this.compra = compra;
+    public void setMiCompra(Compra compra) {
+        this.miCompra = compra;
     }
 }
