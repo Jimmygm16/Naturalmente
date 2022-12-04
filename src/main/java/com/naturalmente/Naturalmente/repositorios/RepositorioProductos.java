@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 public interface RepositorioProductos extends MongoRepository<Producto, String> {
     @Query("{'miCompra.$id': ObjectId(?0)}")

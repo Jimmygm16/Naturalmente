@@ -30,8 +30,8 @@ public class ControladorCompras {
     }
 
     @GetMapping("clientes/{id_cliente}")
-    public List<Compra> getComprasCliente(@PathVariable String idCliente){
-        return this.miRepositorioCompras.getComprasEnCliente(idCliente);
+    public List<Compra> getComprasCliente(@PathVariable String id_cliente){
+        return this.miRepositorioCompras.getComprasEnCliente(id_cliente);
     }
     @PostMapping("clientes/{id_cliente}")
     public Compra create(@RequestBody Compra infoCompra,

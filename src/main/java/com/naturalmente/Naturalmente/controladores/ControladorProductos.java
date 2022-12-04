@@ -40,8 +40,8 @@ public class ControladorProductos {
     }
 
     @GetMapping("compras/{id_compra}")
-    public List<Producto> getProductosCompra(@PathVariable String idCompra){
-        return this.miRepositorioProductos.getProductosEnCompra(idCompra);
+    public List<Producto> getProductosCompra(@PathVariable String id_compra){
+        return this.miRepositorioProductos.getProductosEnCompra(id_compra);
     }
     @PostMapping
     public Producto create(@RequestBody  Producto infoProducto){
