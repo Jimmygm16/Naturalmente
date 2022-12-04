@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface RepositorioPlantas extends MongoRepository<Planta, String> {
     @Query("{'miProducto.$id': ObjectId(?0)}")
-    List<Producto> getPlantasEnProducto(String idProducto);
+    List<Planta> getPlantasEnProducto(String idProducto);
 }

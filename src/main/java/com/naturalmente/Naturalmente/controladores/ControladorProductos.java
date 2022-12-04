@@ -38,6 +38,11 @@ public class ControladorProductos {
                 .orElse(null);
         return productoActual;
     }
+
+    @GetMapping("compras/{id_compra}")
+    public List<Producto> getProductosCompra(@PathVariable String idCompra){
+        return this.miRepositorioProductos.getProductosEnCompra(idCompra);
+    }
     @PostMapping
     public Producto create(@RequestBody  Producto infoProducto){
         return this.miRepositorioProductos.save(infoProducto);
@@ -68,7 +73,7 @@ public class ControladorProductos {
                 .findById(id_compra)
                 .orElse(null);
         if(productoEncontrado != null && compraEncontrada != null) {
-            productoEncontrado.setCompra(compraEncontrada);
+            productoEncontrado.setMiCompra(compraEncontrada);
             return this.miRepositorioProductos.save(productoEncontrado);
         } else {
             return null;
