@@ -25,6 +25,11 @@ public class ControladorPlantas {
         Planta plantaActual = this.miRepositorioPlantas.findById(id).orElse(null);
         return plantaActual;
     }
+
+    @GetMapping("productos/{id_producto}")
+    public List<Planta> getPlantasProducto(@PathVariable String idProducto){
+        return this.miRepositorioPlantas.getPlantasEnProducto(idProducto);
+    }
     @PostMapping
     public Planta create(@RequestBody Planta infoPlanta){
         return this.miRepositorioPlantas.save(infoPlanta);

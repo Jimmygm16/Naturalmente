@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface RepositorioProductos extends MongoRepository<Producto, String> {
     @Query("{'miCompra.$id': ObjectId(?0)}")
-    List<Producto> getProductosEnCompra(String idDepartamento);
+    List<Producto> getProductosEnCompra(String idCompra);
 }

@@ -28,6 +28,11 @@ public class ControladorCompras {
         Compra productoActual = this.miRepositorioCompras.findById(id).orElse(null);
         return productoActual;
     }
+
+    @GetMapping("clientes/{id_cliente}")
+    public List<Compra> getComprasCliente(@PathVariable String idCliente){
+        return this.miRepositorioCompras.getComprasEnCliente(idCliente);
+    }
     @PostMapping("clientes/{id_cliente}")
     public Compra create(@RequestBody Compra infoCompra,
                          @PathVariable String id_cliente) {
