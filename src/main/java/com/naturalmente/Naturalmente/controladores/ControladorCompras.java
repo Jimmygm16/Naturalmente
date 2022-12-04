@@ -2,8 +2,10 @@ package com.naturalmente.Naturalmente.controladores;
 
 import com.naturalmente.Naturalmente.modelos.Cliente;
 import com.naturalmente.Naturalmente.modelos.Compra;
+import com.naturalmente.Naturalmente.modelos.Producto;
 import com.naturalmente.Naturalmente.repositorios.RepositorioClientes;
 import com.naturalmente.Naturalmente.repositorios.RepositorioCompras;
+import com.naturalmente.Naturalmente.repositorios.RepositorioProductos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +20,7 @@ public class ControladorCompras {
     private RepositorioCompras miRepositorioCompras;
     @Autowired
     private RepositorioClientes miRepositorioClientes;
+
     @GetMapping("")
     public List<Compra> index(){return this.miRepositorioCompras.findAll();}
     @GetMapping("{id}")
@@ -25,18 +28,35 @@ public class ControladorCompras {
         Compra productoActual = this.miRepositorioCompras.findById(id).orElse(null);
         return productoActual;
     }
-    @PostMapping("")
-    public Compra create(@RequestBody Compra infoProducto){
-        return this.miRepositorioCompras.save(infoProducto);
-    }
-    @PutMapping("{id}")
-    public Compra update(@PathVariable String id, @RequestBody Compra infoCompra){
-        Compra encontrado = this.miRepositorioCompras.findById(id)
+    @PostMapping("clientes/{id_cliente}")
+    public Compra create(@RequestBody Compra infoCompra,
+                         @PathVariable String id_cliente) {
+        Cliente clienteTemporal = miRepositorioClientes
+                .findById(id_cliente)
                 .orElse(null);
-        if(encontrado != null) {
-            encontrado.setFecha(infoCompra.getFecha());
-            encontrado.setValor(infoCompra.getValor());
-            return this.miRepositorioCompras.save(encontrado);
+        if(clienteTemporal != null) {
+            infoCompra.setMiCliente(clienteTemporal);
+            return this.miRepositorioCompras.save(infoCompra);
+        } else {
+            return null;
+        }
+    }
+
+    @PutMapping("{id}/clientes/{id_cliente}")
+    public Compra update(@PathVariable String id,
+                         @PathVariable String id_cliente,
+                         @RequestBody Compra infoCompra) {
+        Compra compraEncontrada = this.miRepositorioCompras
+                .findById(id)
+                .orElse(null);
+        Cliente clienteEncontrado = this.miRepositorioClientes
+                .findById(id_cliente)
+                .orElse(null);
+        if(compraEncontrada != null && clienteEncontrado != null) {
+            compraEncontrada.setFecha(infoCompra.getFecha());
+            compraEncontrada.setValor(infoCompra.getValor());
+            compraEncontrada.setMiCliente(clienteEncontrado);
+            return this.miRepositorioCompras.save(compraEncontrada);
         }else {
             return null;
         }
@@ -50,15 +70,4 @@ public class ControladorCompras {
         }
     }
 
-    @PutMapping("{id}/clientes/{id_cliente}")
-    public Compra asociarMateriaAdepartamento(@PathVariable String id, @PathVariable String id_cliente){
-        Compra compraEncontrada = this.miRepositorioCompras.findById(id).orElse(null);
-        Cliente clienteEncontrado = this.miRepositorioClientes.findById(id_cliente).orElse(null);
-
-        if (compraEncontrada != null && clienteEncontrado != null){
-            compraEncontrada.setMiCliente(clienteEncontrado);
-            return this.miRepositorioCompras.save(compraEncontrada);
-        }
-        return null;
-    }
 }
