@@ -7,14 +7,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document()
 
 public class Cliente extends Usuario{
-    private String telefono;
 
     //Constructores
     public Cliente() {
     }
-    public Cliente(String nombre, String telefono) {
-        super(nombre);
-        this.telefono = telefono;
+    public Cliente(String _id,String nombre, String cedula, String correo, String telefono) {
+        super(_id, nombre, cedula, correo, telefono);
     }
 
     //Getters and setters
