@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document()
 public class Compra {
     @Id
-    private String id;
+    private String _id;
     private String fecha;
     private int valor;
     @DBRef
@@ -18,18 +18,9 @@ public class Compra {
     public Compra() {
     }
 
-    public Compra(String id, String fecha, int valor) {
-        this.id = id;
+    public Compra(String fecha, int valor) {
         this.fecha = fecha;
         this.valor = valor;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getFecha() {

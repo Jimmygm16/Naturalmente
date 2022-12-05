@@ -12,7 +12,7 @@ public class Cliente extends Usuario{
     public Cliente() {
     }
     public Cliente(String _id,String nombre, String cedula, String correo, String telefono) {
-        super(_id, nombre, cedula, correo, telefono);
+        super(nombre, cedula, correo, telefono);
     }
 
     //Getters and setters
