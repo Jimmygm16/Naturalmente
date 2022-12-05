@@ -9,15 +9,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public abstract class Usuario {
     @Id
     private
-    String id;
+    String _id;
     private String nombre;
     String cedula;
     String correo;
     String telefono;
 
     // Constructor
-    public Usuario(String id, String nombre, String cedula, String correo, String telefono) {
-        this.id = id;
+    public Usuario(String nombre, String cedula, String correo, String telefono) {
         this.nombre = nombre;
         this.cedula = cedula;
         this.correo = correo;
@@ -28,11 +27,11 @@ public abstract class Usuario {
     }
 
     public String getId() {
-        return id;
+        return _id;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this._id = id;
     }
 
     public String getCedula() {

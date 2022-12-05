@@ -14,8 +14,7 @@ public class Tienda {
     String NIT;
     String direccion;
 
-    public Tienda(String _id, String nombre, String NIT, String direccion) {
-        this._id = _id;
+    public Tienda(String nombre, String NIT, String direccion) {
         this.nombre = nombre;
         this.NIT = NIT;
         this.direccion = direccion;
@@ -24,15 +23,6 @@ public class Tienda {
     public Tienda() {
 
     }
-
-    public String get_id() {
-        return _id;
-    }
-
-    public void set_id(String _id) {
-        this._id = _id;
-    }
-
     public String getNombre() {
         return nombre;
     }
