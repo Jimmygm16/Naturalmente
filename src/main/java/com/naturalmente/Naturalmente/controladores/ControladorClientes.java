@@ -29,8 +29,10 @@ public class ControladorClientes {
         Cliente encontrado = this.miRepositorioClientes.findById(id)
                 .orElse(null);
         if(encontrado != null) {
-            encontrado.setTelefono(infoCliente.getTelefono());
             encontrado.setNombre(infoCliente.getNombre());
+            encontrado.setCedula(infoCliente.getCedula());
+            encontrado.setCorreo(infoCliente.getCorreo());
+            encontrado.setTelefono(infoCliente.getTelefono());
             return this.miRepositorioClientes.save(encontrado);
         }else {
             return null;
