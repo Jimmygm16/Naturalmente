@@ -32,6 +32,9 @@ public class ControladorAdministradores {
                 .orElse(null);
         if(encontrado != null) {
             encontrado.setNombre(infoAdministrador.getNombre());
+            encontrado.setCedula(infoAdministrador.getCedula());
+            encontrado.setCorreo(infoAdministrador.getCorreo());
+            encontrado.setTelefono(infoAdministrador.getTelefono());
             return this.miRepositorioAdministradores.save(encontrado);
         }else {
             return null;
